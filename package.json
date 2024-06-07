@@ -1,0 +1,31 @@
+{
+    "name": "azure",
+    "version": "1.0.0",
+    "description": "",
+    "main": "./dist/dr-decorator.js",
+    "scripts": {
+      "build": "rollup -c",
+      "executable": "pkg ./dist/dr-decorator.js -o dist/azr-dr-decor -t node14-macos-arm64 -C Brotli",
+      "preexecutable": "npm run build",
+      "push": "tfx extension create --manifest-globs vss-extension.json --rev-version && rm *.vsix && git add . && git commit -m 'updated' && git push orgin < branch name >",
+      "publish": "tfx extension publish --manifest-globs vss-extension.json --rev-version --share-with <Organisation Name> --token < DevOps PAT to Publish extension to Marketplace > && rm *.vsix"
+    },
+    "keywords": [],
+    "author": "Sidharath Bansal",
+    "license": "ISC",
+    "dependencies": {
+      "axios": "^1.2.1",
+      "flat": "^5.0.2",
+      "js-yaml": "^4.1.0",
+      "tfx-cli": "^0.12.0"
+    },
+    "devDependencies": {
+      "@rollup/plugin-commonjs": "^24.0.0",
+      "@rollup/plugin-json": "^6.0.0",
+      "@rollup/plugin-node-resolve": "^15.0.1",
+      "@rollup/plugin-terser": "^0.2.0",
+      "pkg": "^5.8.0",
+      "rollup": "^3.7.5"
+    }
+  }
+  

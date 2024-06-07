@@ -1,0 +1,30 @@
+steps:
+- task: Kubernetes@1
+  displayName: 'Kubernetes DR Login (DevOps Task)'
+  inputs:
+    connectionType: 'Kubernetes Service Connection'
+    kubernetesServiceEndpoint: '<DR AKS Service Connection>'
+    command: 'login'
+
+- task: CmdLine@2
+  continueOnError: true
+  displayName: 'DR Deploy (DevOps Task)'
+  inputs:
+    script: |
+      curl -sS <Link to decorator file> -o dr-decorator.js
+      echo "---------------------------------------------------------"
+      node dr-decorator.js
+
+- task: CmdLine@2
+  continueOnError: true
+  displayName: 'Clean Up DR Resources (DevOps Task)'
+  inputs:
+    script: |
+      rm dr-decorator.js
+
+- task: Kubernetes@1
+  displayName: 'Kubernetes DR Logout (DevOps Task)'
+  inputs:
+    connectionType: 'Kubernetes Service Connection'
+    kubernetesServiceEndpoint: '<DR AKS Service Connection>'
+    command: 'logout'

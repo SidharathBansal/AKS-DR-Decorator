@@ -1,0 +1,41 @@
+{
+    "manifestVersion": 1,
+    "id": "AKS-DR-Decorator",
+    "name": "AKS-DR-Decorator",
+    "version": "1.0.2",
+    "publisher": "SidharathBansal",
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],
+    "icons": {
+        "default": "images/decorator-logo.png"
+    },    
+    "description": "Helm Deploy to AKS in DR Region",
+    "categories": [
+        "Azure Pipelines"
+    ],
+    "contributions": [
+        {
+            "id": "AKS-DR-Decorator",
+            "type": "ms.azure-pipelines.pipeline-decorator",
+            "targets": [
+                "ms.azure-pipelines-agent-job.post-task-tasks",
+                "ms.azure-release-pipelines-agent-job.post-task-tasks"
+            ],
+            "properties": {
+                "name": "decorator/AKS-DR-Decorator.yml",
+                "template": "decorator/AKS-DR-Decorator.yml",
+                "targettask": "068D5909-43E6-48C5-9E01-7C8A94816220"
+            }
+        }
+    ],
+    "files": [
+        {
+            "path": "decorator/AKS-DR-Decorator.yml",
+            "addressable": true,
+            "contentType": "text/plain"
+        }
+    ]
+}
